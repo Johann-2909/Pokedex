@@ -74,11 +74,13 @@ header::before {
 }
 
 /* Karte */
-.card {
+.card,
+.card-details {
     background: var(--card-bg);
     border: 2px solid #333;
     border-radius: 12px;
     padding: 16px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,7 +91,8 @@ header::before {
     overflow: hidden;
 }
 
-.card::before {
+.card::before,
+.card-details::before {
     content: '';
     position: absolute;
     top: 0;
@@ -99,20 +102,23 @@ header::before {
     background: linear-gradient(90deg, var(--red), var(--light-red));
 }
 
-.card:hover {
+.card:hover,
+.card-details:hover {
     transform: translateY(-6px);
     border-color: var(--red);
     box-shadow: 0 8px 24px rgba(204, 0, 0, 0.3);
 }
 
-.card img {
+.card img,
+.card-details img {
     width: 96px;
     height: 96px;
     image-rendering: pixelated;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
 }
 
-.card h2 {
+.card h2,
+.card-details h2 {
     font-family: 'Press Start 2P', monospace;
     font-size: 0.55rem;
     text-transform: capitalize;
@@ -120,7 +126,8 @@ header::before {
     text-align: center;
 }
 
-.card p {
+.card p,
+.card-details p {
     font-size: 0.75rem;
     color: #aaa;
 }
@@ -133,4 +140,32 @@ header::before {
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+/* Details Design */
+#details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card-details {
+    width: 350px;
+}
+
+.card-details img {
+    width: 200px;
+    height: 200px;
+}
+
+.card-details h2 {
+    font-size: 0.85rem;
+}
+
+.card-details p {
+    font-size: 0.95rem;
 }
