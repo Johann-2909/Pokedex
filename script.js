@@ -1,7 +1,6 @@
 const P = new Pokedex.Pokedex()
 
 function createPokemonCards(name, image, type, weight, height) {
-
   const card = document.createElement('div');
   card.className = 'pokemon-card';
   card.innerHTML = `
@@ -16,14 +15,13 @@ function createPokemonCards(name, image, type, weight, height) {
   card.dataset.name = name
   card.dataset.type = type
   card.addEventListener("click", function () {
-    window.location.href = `details.html?pokemon=${card.dataset.name}`;
+    window.location.href = `detail.html?pokemon=${card.dataset.name}`;
   });
   return card;
 }
 
 async function loadAllPokemon() {
   const list = await P.getPokemonsList({ limit: 151, offset: 0 })
-
   for (const pokemon of list.results) {
     const details = await P.getPokemonByName(pokemon.name)
     const name = details.name
@@ -33,7 +31,6 @@ async function loadAllPokemon() {
     const height = details.height
     const card = createPokemonCards(name, image, type, weight, height);
     document.getElementById("poke-container").appendChild(card)
-
   }
 }
 
