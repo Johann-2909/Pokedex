@@ -2,7 +2,7 @@ const P = new Pokedex.Pokedex()
 const params = new URLSearchParams(window.location.search)
 const name = params.get("pokemon")
 
-
+/* Get Pokemon details */
 function getDetailsPokemon(pokemonName, image, shinyImage, type, weight, height) {
     const card = document.createElement('div');
     card.className = 'pokemon-card';
@@ -30,6 +30,7 @@ function getDetailsPokemon(pokemonName, image, shinyImage, type, weight, height)
     return card;
 }
 
+/* Load Pokemon details */
 async function loadPokemonDetails() {
     const details = await P.getPokemonByName(name)
     const pokemonName = details.name
@@ -50,6 +51,7 @@ async function loadPokemonDetails() {
     containerBottom.appendChild(abilitiesCard);
 }
 
+/* Stats details */
 function statsDetails(stats) {
     const statCard = document.createElement('div');
     statCard.className = 'stat-card';
@@ -70,6 +72,7 @@ function statsDetails(stats) {
     return statCard;
 }
 
+/* Abilities details */
 async function abilitiesDetails(abilities) {
     const abilitiesCard = document.createElement('div');
     abilitiesCard.className = 'abilities-card';
@@ -92,6 +95,7 @@ async function abilitiesDetails(abilities) {
 
 loadPokemonDetails()
 
+/* Go back button */
 document.getElementById("back-button").addEventListener("click", function () {
     window.history.back()
 })
