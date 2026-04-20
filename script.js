@@ -1,5 +1,6 @@
 const P = new Pokedex.Pokedex()
 
+/* Create Pokemon Cards */
 function createPokemonCards(name, image, type, weight, height) {
   const card = document.createElement('div');
   card.className = 'pokemon-card';
@@ -20,6 +21,7 @@ function createPokemonCards(name, image, type, weight, height) {
   return card;
 }
 
+/* Load All Pokemon */
 async function loadAllPokemon() {
   const list = await P.getPokemonsList({ limit: 151, offset: 0 })
   for (const pokemon of list.results) {
@@ -34,21 +36,20 @@ async function loadAllPokemon() {
   }
 }
 
-function filterPokemon() {
-  let input = document.getElementById("search");
-  let filter = input.value.toLowerCase();
+/* Type Filter */
+function applyFilters() {
+  let filter = document.getElementById("search").value.toLowerCase();
+  let filterType = document.getElementById("type-filter").value.toLowerCase();
   let cards = document.querySelectorAll(".pokemon-card")
 
   for (let i = 0; i < cards.length; i++) {
-    if (cards[i].dataset.name.toLowerCase().includes(filter)) {
-      cards[i].style.display = "block"
-    } else if (cards[i].dataset.type.includes(filter)) { cards[i].style.display = "block" }
-    else { cards[i].style.display = "none" };
-
+    const nameMatch = cards[i].dataset.name.toLowerCase().includes(filter)
+    const typeMatch = filterType === "" || cards[i].dataset.type === filterType
+    cards[i].style.display = nameMatch && typeMatch ? "block" : "none"
   }
-
 }
 
-document.getElementById("search").addEventListener("input", filterPokemon)
+document.getElementById("search").addEventListener("input", applyFilters)
+document.getElementById("type-filter").addEventListener("change", applyFilters)
 
 loadAllPokemon();
