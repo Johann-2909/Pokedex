@@ -146,6 +146,7 @@ header::before {
 #details {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     padding: 32px;
@@ -175,4 +176,13 @@ header::before {
     background-color: var(--red);
     border-radius: 6px;
     overflow: hidden;
+}
+
+#details-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#details-bottom {
+    width: 100%;
 }
