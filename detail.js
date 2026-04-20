@@ -28,11 +28,14 @@ async function loadPokemonDetails() {
     const weight = details.weight
     const height = details.height
     const stats = details.stats
+    const abilities = details.abilities
     const card = getDetailsPokemon(name, image, type, weight, height);
     const statsCard = statsDetails(stats);
+    const abilitiesCard = abilitiesDetails(abilities);
     const container = document.getElementById("details");
     container.appendChild(card);
     container.appendChild(statsCard);
+    container.appendChild(abilitiesCard);
 }
 
 function statsDetails(stats) {
@@ -46,12 +49,30 @@ function statsDetails(stats) {
         statItem.innerHTML = `
             <h3>${stat.stat.name}</h3>
             <p>Base Stat: ${stat.base_stat}</p>
+            <div class="bar" style="width: ${(stat.base_stat / 255) * 100}%"></div>
         `;
 
         statCard.appendChild(statItem);
     }
 
     return statCard;
+}
+
+function abilitiesDetails(abilities) {
+    const abilitiesCard = document.createElement('div');
+    abilitiesCard.className = 'abilities-card';
+
+    for (const ability of abilities) {
+        const abilityItem = document.createElement('div');
+        abilityItem.className = 'ability-item';
+        abilityItem.innerHTML = `
+            <h3>${ability.ability.name}</h3>
+            <p>${ability.ability.description || 'No description available.'}</p>
+        `;
+        abilitiesCard.appendChild(abilityItem);
+    }
+
+    return abilitiesCard;
 }
 
 loadPokemonDetails()

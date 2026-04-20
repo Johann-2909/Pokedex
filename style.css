@@ -169,3 +169,10 @@ header::before {
 .card-details p {
     font-size: 0.95rem;
 }
+
+.bar {
+    height: 12px;
+    background-color: var(--red);
+    border-radius: 6px;
+    overflow: hidden;
+}
