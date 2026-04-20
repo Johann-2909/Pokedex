@@ -91,3 +91,7 @@ async function abilitiesDetails(abilities) {
 
 
 loadPokemonDetails()
+
+document.getElementById("back-button").addEventListener("click", function () {
+    window.history.back()
+})
