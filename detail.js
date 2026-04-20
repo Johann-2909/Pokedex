@@ -44,11 +44,13 @@ async function loadPokemonDetails() {
     const card = getDetailsPokemon(pokemonName, image, shinyImage, type, weight, height);
     const statsCard = statsDetails(stats);
     const abilitiesCard = await abilitiesDetails(abilities);
+    const description = await flavorText()
     const containerTop = document.getElementById("details-top");
     const containerBottom = document.getElementById("details-bottom");
     containerTop.appendChild(card);
     containerTop.appendChild(statsCard);
     containerBottom.appendChild(abilitiesCard);
+    containerBottom.appendChild(description)
 }
 
 /* Stats details */
@@ -90,6 +92,21 @@ async function abilitiesDetails(abilities) {
     }
 
     return abilitiesCard;
+}
+
+async function flavorText() {
+    const pokemonDescription = await P.getPokemonSpeciesByName(name)
+    const pokemonFlavorText = pokemonDescription.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text
+    const descriptionHeading = document.createElement('h2')
+    descriptionHeading.className = 'pokemon-description-title';
+    descriptionHeading.textContent = 'description';
+    const flavorText = document.createElement('p')
+    flavorText.className = 'pokemon-description';
+    flavorText.textContent = pokemonFlavorText.replace(/\f/g, ' ')
+    const container = document.createElement('div')
+    container.appendChild(descriptionHeading)
+    container.appendChild(flavorText)
+    return container
 }
 
 
