@@ -31,11 +31,10 @@ body {
 
 /* Header */
 header {
-       display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
     background: linear-gradient(135deg, var(--red), var(--dark-red));
     padding: 20px 40px;
+    display: flex;
+    align-items: center;
     gap: 20px;
     border-bottom: 4px solid var(--dark-red);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
