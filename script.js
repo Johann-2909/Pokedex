@@ -24,6 +24,7 @@ function createPokemonCards(name, image, type, weight, height) {
 /* Load All Pokemon */
 async function loadAllPokemon() {
   const list = await P.getPokemonsList({ limit: 151, offset: 0 })
+  const pokemonContainer = document.getElementById("poke-container")
   for (const pokemon of list.results) {
     const details = await P.getPokemonByName(pokemon.name)
     const name = details.name
@@ -32,12 +33,12 @@ async function loadAllPokemon() {
     const weight = details.weight
     const height = details.height
     const card = createPokemonCards(name, image, type, weight, height);
-    document.getElementById("poke-container").appendChild(card)
+    pokemonContainer.appendChild(card)
   }
 }
 
 /* Type Filter */
-function applyFilters() {
+function filterPokemon() {
   let filter = document.getElementById("search").value.toLowerCase();
   let filterType = document.getElementById("type-filter").value.toLowerCase();
   let cards = document.querySelectorAll(".pokemon-card")
@@ -49,7 +50,7 @@ function applyFilters() {
   }
 }
 
-document.getElementById("search").addEventListener("input", applyFilters)
-document.getElementById("type-filter").addEventListener("change", applyFilters)
+document.getElementById("search").addEventListener("input", filterPokemon)
+document.getElementById("type-filter").addEventListener("change", filterPokemon)
 
 loadAllPokemon();

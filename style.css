@@ -92,7 +92,7 @@ header::before {
     margin: 0 auto;
 }
 
-/* Karte */
+/* Card */
 .card,
 .card-details {
     background: var(--card-bg);
